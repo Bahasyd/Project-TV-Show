@@ -3,19 +3,51 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>TV Show Project | Bakytbek Sydykov | Bahasyd </title>
+    <title>TV Show Project |sarawone </title>
     <link href="style.css" rel="stylesheet" />
     <link rel="icon" href="/favicon.ico" type="image/x-icon" />
   </head>
 
   <body>
-    <div id="root">
-    </div>
+   
+
+      <template id="card" >
+        <section >
+          <h3></h3>
+          <img>
+          <p></p>
+          <a></a>
+        </section>
+      </template>
+
+      <!-- adding search box-->
+      <label>
+        Search <input type ="search" id = 'search' name ='search' placeholder="Search"></input>
+     </label>
+
+     <!-- adding dropdown list-->
+      <label>
+        Choose Series 
+        <select id ='seri-dropdown'>
+            <option value="option1">Select Series</option>
+        </select>
+      </label>
+     <label>
+      Choose Season & Episode 
+      <select id ='mov-dropdown'>
+          <option value = "option1">Select season & Episode</option>
+      </select>
+  </label>
+
+     <main id ='flimContainer'></main> 
 
     <!-- Loads a provided function called getAllEpisodes() which returns all episodes -->
-    <script src="episodes.js"></script>
+    <script defer src="episodes.js"></script>
 
     <!-- Loads YOUR javascript code -->
-    <script src="script.js"></script>
+    <script defer src="script.js"></script>
+
+      <!--adding credit to origin data source -->
+
   </body>
 </html>
