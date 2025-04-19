@@ -40,6 +40,26 @@ window.onload = setup;*/
     const epiNumber = String(number).padStart(2, '0');
     return `S${seasonNumber}E${epiNumber}`;
 }
+
+  //filtering select box
+  function handleSelect() {
+    const selectedId = selectEl.value;
+  
+    if (!selectedId) {
+      makePageForEpisodes(episodes); // Show all episodes
+      return;                   
+    }
+  
+    const episode = episodes.find(ep => ep.id == selectedId);
+    if (episode) {
+      makePageForEpisodes([episode]); // Show selected episode
+    }
+  }
+
+  //adding listener for select box
+  selectEl.addEventListener('change', handleSelect);
+
+  
   
   function makePageForEpisodes(episodeList) {
     const rootElem = document.getElementById("root");
