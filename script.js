@@ -14,7 +14,32 @@ window.onload = setup;*/
   function setup() {
     const allEpisodes = getAllEpisodes();
     makePageForEpisodes(allEpisodes);
+    populateSelect();
   }
+
+  // get episodes  
+  const episodes    = getAllEpisodes();
+
+  // getting search & select from DOM
+  const searchInput = document.getElementById('search-input');
+  const selectEl    = document.getElementById('episode-select');
+
+  // adding option value in select box   
+  function populateSelect() {
+    episodes.forEach(ep => {
+      const option = document.createElement('option');
+      option.value = ep.id;
+      option.textContent = `${formatEpisodeCode(ep.season, ep.number)} - ${ep.name}`;
+      selectEl.appendChild(option);
+      });
+    }
+
+  // format the season & episode 
+  function formatEpisodeCode(season, number) {
+    const seasonNumber = String(season).padStart(2, '0');
+    const epiNumber = String(number).padStart(2, '0');
+    return `S${seasonNumber}E${epiNumber}`;
+}
   
   function makePageForEpisodes(episodeList) {
     const rootElem = document.getElementById("root");
