@@ -59,7 +59,24 @@ window.onload = setup;*/
   //adding listener for select box
   selectEl.addEventListener('change', handleSelect);
 
-  
+  //filtering search 
+  function handleSearch() {
+    const term = searchInput.value.trim().toLowerCase();
+    if (!term) {
+      makePageForEpisodes(episodes);
+      return;
+    }
+    const filtered = episodes.filter(ep => {
+      const inName    = ep.name.toLowerCase().includes(term);
+      const inSummary = ep.summary.toLowerCase().includes(term);
+
+      return inName || inSummary;
+    });
+    makePageForEpisodes(filtered);
+  }
+
+  // adding listener for search box
+  searchInput.addEventListener('input', handleSearch);
   
   function makePageForEpisodes(episodeList) {
     const rootElem = document.getElementById("root");
