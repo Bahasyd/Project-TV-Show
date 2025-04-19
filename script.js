@@ -14,7 +14,69 @@ window.onload = setup;*/
   function setup() {
     const allEpisodes = getAllEpisodes();
     makePageForEpisodes(allEpisodes);
+    populateSelect();
   }
+
+  // get episodes  
+  const episodes    = getAllEpisodes();
+
+  // getting search & select from DOM
+  const searchInput = document.getElementById('search-input');
+  const selectEl    = document.getElementById('episode-select');
+
+  // adding option value in select box   
+  function populateSelect() {
+    episodes.forEach(ep => {
+      const option = document.createElement('option');
+      option.value = ep.id;
+      option.textContent = `${formatEpisodeCode(ep.season, ep.number)} - ${ep.name}`;
+      selectEl.appendChild(option);
+      });
+    }
+
+  // format the season & episode 
+  function formatEpisodeCode(season, number) {
+    const seasonNumber = String(season).padStart(2, '0');
+    const epiNumber = String(number).padStart(2, '0');
+    return `S${seasonNumber}E${epiNumber}`;
+}
+
+  //filtering select box
+  function handleSelect() {
+    const selectedId = selectEl.value;
+  
+    if (!selectedId) {
+      makePageForEpisodes(episodes); // Show all episodes
+      return;                   
+    }
+  
+    const episode = episodes.find(ep => ep.id == selectedId);
+    if (episode) {
+      makePageForEpisodes([episode]); // Show selected episode
+    }
+  }
+
+  //adding listener for select box
+  selectEl.addEventListener('change', handleSelect);
+
+  //filtering search 
+  function handleSearch() {
+    const term = searchInput.value.trim().toLowerCase();
+    if (!term) {
+      makePageForEpisodes(episodes);
+      return;
+    }
+    const filtered = episodes.filter(ep => {
+      const inName    = ep.name.toLowerCase().includes(term);
+      const inSummary = ep.summary.toLowerCase().includes(term);
+
+      return inName || inSummary;
+    });
+    makePageForEpisodes(filtered);
+  }
+
+  // adding listener for search box
+  searchInput.addEventListener('input', handleSearch);
   
   function makePageForEpisodes(episodeList) {
     const rootElem = document.getElementById("root");
