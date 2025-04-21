@@ -9,32 +9,19 @@
   </head>
 
   <body>
-    <h1>TV Show Episode Guide</h1>
+    <h1>TV Guide</h1>
+      <input id="show-search" placeholder="Search shows..." />
+      <section id="shows-listing"></section>
     
-      <!-- search box and select box section-->
-      <section id="controls">
-        <label for="search-input">Search Episodes:</label>
-        <input
-          type="search"
-          id="search-input"
-          placeholder="Search by name or summary"
-        />
+      <section id="controls" style="display:none;">
+        <input id="search-input" placeholder="Search episodes..." />
+        <select id="episode-select"></select>
+        <button id="back-to-shows">Back to shows</button>
+      </section>
+    
+      <div id="status-message"></div>
+      <section id="root" style="display:none;"></section>
       
-        <label for="show-select">Choose a show:</label>
-        <select id="show-select">
-            <option value="">Select a show</option>
-        </select>
-  
-        <label for="episode-select">Jump to episode:</label>
-        <select id="episode-select">
-          <option value="">-- Select an episode --</option>
-        </select>
-  <!--for status-->
-  <div id="status-message"></div>
-
-    <div id="root">
-    </div>
-   
     <!-- Loads YOUR javascript code -->
     <script src="script.js"></script>
   </body>
